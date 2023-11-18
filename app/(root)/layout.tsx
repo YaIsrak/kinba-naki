@@ -22,7 +22,14 @@ export const metadata: Metadata = {
 		follow: true,
 		index: true,
 	},
+	verification: {
+		google: 'fmDb5LvLMBphFnbLxy0twqLiHhx4sOWt_ie3fZKiGwk',
+	},
 };
+
+{
+	/* <meta name="google-site-verification" content="fmDb5LvLMBphFnbLxy0twqLiHhx4sOWt_ie3fZKiGwk" /> */
+}
 
 export default function RootLayout({
 	children,

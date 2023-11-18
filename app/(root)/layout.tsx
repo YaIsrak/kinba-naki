@@ -6,9 +6,22 @@ import { Inter } from 'next/font/google';
 import '../globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
+const { TWITTER_SITE, SITE_NAME, TWITTER_CREATOR } = process.env;
+const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
+	? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+	: 'http://localhost:3000';
+
 export const metadata: Metadata = {
-	title: 'Kinba Naki 🛍️',
+	metadataBase: new URL(baseUrl),
+	title: {
+		default: SITE_NAME!,
+		template: `%s | ${SITE_NAME}`,
+	},
 	description: 'A T-shirt E-Commarce website located in Bangladesh',
+	robots: {
+		follow: true,
+		index: true,
+	},
 };
 
 export default function RootLayout({

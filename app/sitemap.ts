@@ -1,0 +1,21 @@
+import { MetadataRoute } from 'next';
+
+const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
+	? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+	: 'http://localhost:3000';
+
+type Route = {
+	url: string;
+	lastModified: string;
+};
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+	const routesMap = [''].map((route) => ({
+		url: `${baseUrl}${route}`,
+		lastModified: new Date().toISOString(),
+	}));
+
+	let fetchedRoutes: Route[] = [];
+
+	return [...routesMap, ...fetchedRoutes];
+}

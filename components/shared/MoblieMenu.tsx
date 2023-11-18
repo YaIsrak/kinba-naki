@@ -1,6 +1,5 @@
 import { NavItems } from '@/ConstantData';
-import CartIcon from '@/components/Icon/CartIcon';
-import { AvatarIcon, ChevronDownIcon } from '@radix-ui/react-icons';
+import { ChevronDownIcon, HamburgerMenuIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import {
@@ -9,20 +8,21 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '../ui/dropdown-menu';
-import MoblieMenu from './MoblieMenu';
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '../ui/sheet';
+import Search from './Search';
 
-export default function Navbar() {
+export default function MoblieMenu() {
 	return (
-		<nav className='w-full py-3 backdrop-blur-sm bg-background/10 fixed'>
-			<div className='max-w-screen-xl flex flex-warp item-center justify-between mx-auto px-4 md:px-8 lg:px-12'>
-				{/* Logo */}
-				<Link href={'/'}>
-					<h1 className='text-2xl font-semibold'>Kinba naki🛍️</h1>
-				</Link>
-
-				{/* Nav item */}
-				<div className='hidden md:block'>
-					<div className='flex gap-5'>
+		<>
+			<Sheet>
+				<SheetTrigger asChild>
+					<HamburgerMenuIcon className='h-7 w-7 block md:hidden' />
+				</SheetTrigger>
+				<SheetContent side='left'>
+					<SheetHeader>
+						<Search />
+					</SheetHeader>
+					<div className='pt-10 flex flex-col gap-5'>
 						{NavItems.map((navitem) =>
 							!navitem.dropdown ? (
 								<Button key={navitem.title} variant='ghost'>
@@ -46,19 +46,8 @@ export default function Navbar() {
 							)
 						)}
 					</div>
-				</div>
-
-				{/* Extra */}
-				<div className='flex gap-3'>
-					<Link href={'/avater'} className='hidden md:block'>
-						<AvatarIcon className='h-7 w-7' />
-					</Link>
-					<Link href={'/cart'}>
-						<CartIcon />
-					</Link>
-					<MoblieMenu />
-				</div>
-			</div>
-		</nav>
+				</SheetContent>
+			</Sheet>
+		</>
 	);
 }

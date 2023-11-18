@@ -1,7 +1,14 @@
+import HeroSection from '@/components/shared/Home/HeroSection';
+import ProductHeroSection from '@/components/shared/Home/ProductHeroSection';
+
 export default function Home() {
 	return (
-		<main className='flex min-h-screen flex-col items-center justify-between p-24'>
-			<h1 className='font-semibold text-4xl'>Hello world</h1>
-		</main>
+		<>
+			<HeroSection />
+			<ProductHeroSection name='hoodie' />
+			<ProductHeroSection name='sweatshirt' />
+			<ProductHeroSection name='tshirt' />
+			<ProductHeroSection name='panjabi' />
+		</>
 	);
 }

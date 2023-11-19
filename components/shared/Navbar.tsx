@@ -1,19 +1,12 @@
-import { NavItems } from '@/ConstantData';
 import CartIcon from '@/components/Icon/CartIcon';
-import { AvatarIcon, ChevronDownIcon } from '@radix-ui/react-icons';
+import { AvatarIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
-import { Button } from '../ui/button';
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger,
-} from '../ui/dropdown-menu';
 import MoblieMenu from './MoblieMenu';
+import NavMenuItem from './NavMenuItem';
 
 export default function Navbar() {
 	return (
-		<nav className='w-full py-3 backdrop-blur-sm bg-background/10 fixed'>
+		<nav className='w-full py-3 backdrop-blur-lg bg-background/50 fixed z-50'>
 			<div className='max-w-screen-xl flex flex-warp item-center justify-between mx-auto px-4 md:px-8 lg:px-12'>
 				{/* Logo */}
 				<Link href={'/'}>
@@ -21,32 +14,7 @@ export default function Navbar() {
 				</Link>
 
 				{/* Nav item */}
-				<div className='hidden md:block'>
-					<div className='flex gap-5'>
-						{NavItems.map((navitem) =>
-							!navitem.dropdown ? (
-								<Button key={navitem.title} variant='ghost'>
-									<Link href={navitem.url}>{navitem.title}</Link>
-								</Button>
-							) : (
-								<DropdownMenu key={navitem.title}>
-									<DropdownMenuTrigger asChild className='cursor-pointer'>
-										<Button variant='ghost' className='flex gap-2'>
-											{navitem.title} <ChevronDownIcon className='w-6 h-6' />
-										</Button>
-									</DropdownMenuTrigger>
-									<DropdownMenuContent>
-										{navitem.dropdownItem?.map((item) => (
-											<DropdownMenuItem key={item.title}>
-												<Link href={`shop${item.url}`}>{item.title}</Link>
-											</DropdownMenuItem>
-										))}
-									</DropdownMenuContent>
-								</DropdownMenu>
-							)
-						)}
-					</div>
-				</div>
+				<NavMenuItem />
 
 				{/* Extra */}
 				<div className='flex gap-3'>

@@ -1,3 +1,4 @@
+import ProductCard from '@/components/Card/ProductCard';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,7 +11,7 @@ export default function ProductHeroSection({ name }: Props) {
 	return (
 		<div className='max-w-screen-xl mx-auto px-4 md:px-8 lg:px-12 py-20 space-y-10'>
 			<Info name={name} />
-			<NewArrivals />
+			<NewArrivals name={name} />
 		</div>
 	);
 }
@@ -48,5 +49,16 @@ function Info({ name }: Props) {
 }
 
 function NewArrivals({ name }: Props) {
-	return <div>New Arriavals</div>;
+	return (
+		<div>
+			<h2 className='text-center text-3xl uppercase font-semibold'>
+				New Arrivals
+			</h2>
+			<div className='grid grid-cols-1 md:grid-cols-3 gap-3 mt-5'>
+				<ProductCard name={name} id={'1'} />
+				<ProductCard name={name} id={'2'} />
+				<ProductCard name={name} id={'3'} />
+			</div>
+		</div>
+	);
 }
